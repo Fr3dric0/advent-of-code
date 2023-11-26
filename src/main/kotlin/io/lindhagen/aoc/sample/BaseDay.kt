@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.sample
 
-interface BaseDay {
-  fun task1(input: String): Int
-  fun task2(input: String): Int
+interface BaseDay<OUTCOME> {
+  fun task1(input: String): OUTCOME
+  fun task2(input: String): OUTCOME
 }

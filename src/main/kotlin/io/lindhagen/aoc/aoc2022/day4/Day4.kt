@@ -2,7 +2,7 @@ package io.lindhagen.aoc.aoc2022.day4
 
 import io.lindhagen.aoc.sample.BaseDay
 
-object Day4 : BaseDay {
+object Day4 : BaseDay<Int> {
   override fun task1(input: String): Int {
     val pairs = input.trim()
       .split("\n")

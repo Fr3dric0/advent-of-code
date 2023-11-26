@@ -3,7 +3,7 @@ package io.lindhagen.aoc.aoc2022.day3
 import io.lindhagen.aoc.aoc2022.BaseTest
 import io.lindhagen.aoc.aoc2022.Task
 
-internal class Day3Test : BaseTest {
+internal class Day3Test : BaseTest<Int> {
   override val tester = Day3
 
   override val sample = Task(

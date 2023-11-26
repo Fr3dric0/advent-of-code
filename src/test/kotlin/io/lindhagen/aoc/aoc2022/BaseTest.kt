@@ -12,11 +12,11 @@ data class Task<OUTCOME>(
   val task2: OUTCOME,
 )
 
-internal interface BaseTest {
-  val sample: Task<Int>
-  val actual: Task<Int>
+internal interface BaseTest<OUTCOME> {
+  val sample: Task<OUTCOME>
+  val actual: Task<OUTCOME>
 
-  val tester: BaseDay
+  val tester: BaseDay<OUTCOME>
 
   @Test
   fun `'task1' sample`() {

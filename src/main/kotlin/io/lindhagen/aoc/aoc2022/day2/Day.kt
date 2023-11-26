@@ -8,7 +8,7 @@ enum class RoundOutcome {
   LOOSE,
 }
 
-internal object Day : BaseDay {
+internal object Day : BaseDay<Int> {
   private val shapeScore = mapOf(
     // Rock
     "A" to 1,
