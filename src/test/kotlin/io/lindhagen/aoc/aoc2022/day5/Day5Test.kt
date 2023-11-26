@@ -19,11 +19,11 @@ internal class Day5Test : BaseTest<String> {
     move 1 from 1 to 2
     """.trimIndent(),
     task1 = "CMZ",
-    task2 = "eeffw",
+    task2 = "MCD",
   )
   override val actual = Task(
     input = "day5/input1",
     task1 = "VCTFTJQCG",
-    task2 = "wefwf",
+    task2 = "GCFGLDNJZ",
   )
 }

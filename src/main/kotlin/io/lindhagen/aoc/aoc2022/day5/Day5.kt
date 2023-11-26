@@ -4,11 +4,26 @@ import io.lindhagen.aoc.sample.BaseDay
 
 @JvmInline
 value class Stack(val stack: MutableList<String>) {
+  fun takeLastN(n: Int): List<String> {
+    return stack
+      .takeLast(n)
+      .also {
+        // Not a pretty way to remove the lastN items
+        (0..<n).forEach {
+          stack.removeLast()
+        }
+      }
+  }
+
   fun pop(): String {
     return stack.removeLast()
   }
   fun add(item: String) {
     stack.add(item)
+  }
+
+  fun addAll(items: List<String>) {
+    stack.addAll(items)
   }
 
   fun peek(): String? = stack.lastOrNull()
@@ -23,6 +38,14 @@ value class Stacks(val stacks: List<Stack>) {
       println("\t${it + 1}) moving $item from ${stacks[fromStack]} to ${stacks[toStack]}")
       stacks[toStack].add(item)
     }
+  }
+
+  fun moveBatch(fromStack: Int, toStack: Int, count: Int) {
+    println("Batch Command: move $count from ${fromStack + 1} to ${toStack + 1}...")
+
+    val items = stacks[fromStack].takeLastN(count)
+    println("\t1) moving $items from ${stacks[fromStack]} to ${stacks[toStack]}")
+    stacks[toStack].addAll(items)
   }
 
   fun print() {
@@ -40,16 +63,7 @@ value class Stacks(val stacks: List<Stack>) {
 internal object Day5 : BaseDay<String> {
   override fun task1(input: String): String {
     val (stacksRaw, movesRaw) = input.split("\n\n")
-
-    val stacks = createMatrix(stacksRaw)
-      // Rotate so each row is equivalent to a stack
-      .transpose()
-      .also { println(it) }
-      // Remove any placeholder whitespaces since we don't
-      // need them anymore
-      .map { it.filter { it.isNotEmpty() } }
-      .map { Stack(it.reversed().toMutableList()) }
-      .let { Stacks(it) }
+    val stacks = stacksFromMatrix(createMatrix(stacksRaw))
 
     val moves = parseMoves(movesRaw.split("\n"))
 
@@ -62,7 +76,29 @@ internal object Day5 : BaseDay<String> {
   }
 
   override fun task2(input: String): String {
-    TODO("Not yet implemented")
+    val (stacksRaw, movesRaw) = input.split("\n\n")
+
+    val stacks = stacksFromMatrix(createMatrix(stacksRaw))
+    val moves = parseMoves(movesRaw.split("\n"))
+
+    moves.forEach { (count, moveFrom, moveTo) ->
+      stacks.moveBatch(fromStack = moveFrom - 1, toStack = moveTo - 1, count = count)
+      stacks.print()
+    }
+
+    return stacks.itemsAtTop().joinToString("")
+  }
+
+  private fun stacksFromMatrix(matrix: List<List<String>>): Stacks {
+    return matrix
+      // Rotate so each row is equivalent to a stack
+      .transpose()
+      .also { println(it) }
+      // Remove any placeholder whitespaces since we don't
+      // need them anymore
+      .map { it.filter { it.isNotEmpty() } }
+      .map { Stack(it.reversed().toMutableList()) }
+      .let { Stacks(it) }
   }
 
   private fun createMatrix(stacks: String): List<List<String>> {
