@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 
-data class Task<OUTCOME>(
+data class Task<out OUTCOME>(
   val input: String,
   val task1: OUTCOME,
   val task2: OUTCOME,
 )
 
-internal interface BaseTest<OUTCOME> {
+internal interface BaseTest<out OUTCOME> {
   val sample: Task<OUTCOME>
   val actual: Task<OUTCOME>
 
