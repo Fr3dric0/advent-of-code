@@ -1,8 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day1
 
-import io.lindhagen.aoc.sample.BaseTask
-
-internal object Day : BaseTask() {
+internal object Day {
 
   fun task1(input: String): Int {
     return input
