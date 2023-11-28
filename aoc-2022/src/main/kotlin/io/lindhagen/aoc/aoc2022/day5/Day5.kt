@@ -1,64 +1,9 @@
 package io.lindhagen.aoc.aoc2022.day5
 
 import io.lindhagen.aoc.sample.BaseDay
-
-@JvmInline
-value class Stack(val stack: MutableList<String>) {
-  fun takeLastN(n: Int): List<String> {
-    return stack
-      .takeLast(n)
-      .also {
-        // Not a pretty way to remove the lastN items
-        (0..<n).forEach {
-          stack.removeLast()
-        }
-      }
-  }
-
-  fun pop(): String {
-    return stack.removeLast()
-  }
-  fun add(item: String) {
-    stack.add(item)
-  }
-
-  fun addAll(items: List<String>) {
-    stack.addAll(items)
-  }
-
-  fun peek(): String? = stack.lastOrNull()
-}
-
-@JvmInline
-value class Stacks(val stacks: List<Stack>) {
-  fun move(fromStack: Int, toStack: Int, count: Int) {
-    println("Command: move $count from ${fromStack + 1} to ${toStack + 1}...")
-    (0..<count).map {
-      val item = stacks[fromStack].pop()
-      println("\t${it + 1}) moving $item from ${stacks[fromStack]} to ${stacks[toStack]}")
-      stacks[toStack].add(item)
-    }
-  }
-
-  fun moveBatch(fromStack: Int, toStack: Int, count: Int) {
-    println("Batch Command: move $count from ${fromStack + 1} to ${toStack + 1}...")
-
-    val items = stacks[fromStack].takeLastN(count)
-    println("\t1) moving $items from ${stacks[fromStack]} to ${stacks[toStack]}")
-    stacks[toStack].addAll(items)
-  }
-
-  fun print() {
-    println()
-    stacks.forEachIndexed { index, stack ->
-      println("${index + 1} : ${stack.stack.joinToString(" | ")} |")
-    }
-  }
-
-  fun itemsAtTop(): List<String> {
-    return stacks.mapNotNull { it.peek() }
-  }
-}
+import io.lindhagen.aoc.utils.ListUtils.transpose
+import io.lindhagen.aoc.utils.SimpleStack
+import io.lindhagen.aoc.utils.SimpleStackCollection
 
 internal object Day5 : BaseDay<String> {
   override fun task1(input: String): String {
@@ -89,7 +34,7 @@ internal object Day5 : BaseDay<String> {
     return stacks.itemsAtTop().joinToString("")
   }
 
-  private fun stacksFromMatrix(matrix: List<List<String>>): Stacks {
+  private fun stacksFromMatrix(matrix: List<List<String>>): SimpleStackCollection {
     return matrix
       // Rotate so each row is equivalent to a stack
       .transpose()
@@ -97,8 +42,8 @@ internal object Day5 : BaseDay<String> {
       // Remove any placeholder whitespaces since we don't
       // need them anymore
       .map { it.filter { it.isNotEmpty() } }
-      .map { Stack(it.reversed().toMutableList()) }
-      .let { Stacks(it) }
+      .map { SimpleStack(it.reversed().toMutableList()) }
+      .let { SimpleStackCollection(it) }
   }
 
   private fun createMatrix(stacks: String): List<List<String>> {
@@ -145,23 +90,6 @@ internal object Day5 : BaseDay<String> {
     }
 
     return this + (0..<sizeDiff).map { value }
-  }
-
-  private fun List<List<String>>.transpose() : List<List<String>> {
-    val rows = this.size
-    val columns = this[0].size
-
-    val transposedMatrix = Array(columns) { Array(rows) { "" } }
-
-    for (row in 0..<rows) {
-      for (column in 0..<columns) {
-        transposedMatrix[column][row] = this[row][column]
-      }
-    }
-
-    return transposedMatrix
-      .toList()
-      .map { it.toList() }
   }
 
   private fun parseMoves(moves: List<String>): List<Triple<Int, Int, Int>> {

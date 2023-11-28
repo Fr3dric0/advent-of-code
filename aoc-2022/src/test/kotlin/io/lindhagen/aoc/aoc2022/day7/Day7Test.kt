@@ -2,7 +2,6 @@ package io.lindhagen.aoc.aoc2022.day7
 
 import io.lindhagen.aoc.aoc2022.BaseTest
 import io.lindhagen.aoc.aoc2022.Task
-import io.lindhagen.aoc.aoc2022.day6.Day6
 
 internal class Day7Test : BaseTest<Int> {
   override val tester = Day7

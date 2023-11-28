@@ -1,11 +1,12 @@
 package io.lindhagen.aoc.aoc2022.day4
 
 import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.InputUtils.asNewLines
 
 object Day4 : BaseDay<Int> {
   override fun task1(input: String): Int {
-    val pairs = input.trim()
-      .split("\n")
+    val pairs = input
+      .asNewLines()
       .map { it.split(",") }
       .map {
         it.map {
@@ -22,7 +23,7 @@ object Day4 : BaseDay<Int> {
 
   override fun task2(input: String): Int {
     val pairs = input.trim()
-      .split("\n")
+      .asNewLines()
       .map { it.split(",") }
       .map {
         it.map {
