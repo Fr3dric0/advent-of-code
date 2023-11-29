@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day6
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 
 object Day6 : BaseDay<Int> {
   private const val startOfPacketLength = 4

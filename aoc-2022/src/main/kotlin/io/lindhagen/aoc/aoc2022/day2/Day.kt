@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day2
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 
 enum class RoundOutcome {
   DRAW,

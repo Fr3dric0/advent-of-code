@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day4
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 import io.lindhagen.aoc.utils.InputUtils.asNewLines
 
 object Day4 : BaseDay<Int> {

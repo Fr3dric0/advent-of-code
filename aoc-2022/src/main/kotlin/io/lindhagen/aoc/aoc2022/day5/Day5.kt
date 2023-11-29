@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day5
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 import io.lindhagen.aoc.utils.ListUtils.transpose
 import io.lindhagen.aoc.utils.SimpleStack
 import io.lindhagen.aoc.utils.SimpleStackCollection

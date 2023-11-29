@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022.day10
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 
 object Day10 : BaseDay<Int> {
   override fun task1(input: String): Int {

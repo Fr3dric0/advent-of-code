@@ -1,6 +1,6 @@
 package io.lindhagen.aoc.aoc2022
 
-import io.lindhagen.aoc.sample.BaseDay
+import io.lindhagen.aoc.utils.BaseDay
 import io.lindhagen.aoc.utils.InputUtil
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
