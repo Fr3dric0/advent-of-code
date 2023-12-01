@@ -10,13 +10,20 @@ internal class Day1Test : BaseTest<Int> {
 
     override val sample = Task(
       input = """
+      two1nine
+      eightwothree
+      abcone2threexyz
+      xtwone3four
+      4nineeightseven2
+      zoneight234
+      7pqrstsixteen
       """.trimIndent(),
-      task1 = 157,
-      task2 = 70,
+      task1 = 209,
+      task2 = 281,
     )
     override val actual = Task(
       input = "day1",
-      task1 = 8202,
-      task2 = 2864,
+      task1 = 52974,
+      task2 = 53340,
     )
 }

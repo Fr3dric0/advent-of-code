@@ -13,6 +13,8 @@ dependencies {
   implementation(project(":common"))
   testImplementation(kotlin("test"))
   testImplementation("io.strikt:strikt-core:0.34.0")
+
+  testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.1")
 }
 
 application {
