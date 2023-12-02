@@ -3,6 +3,7 @@ package io.lindhagen.aoc.aoc2023.day1
 import io.lindhagen.aoc.aoc2023.BaseTest
 import io.lindhagen.aoc.aoc2023.Task
 import io.lindhagen.aoc.aoc2023.day1.Day1
+import org.junit.jupiter.api.Test
 
 
 internal class Day1Test : BaseTest<Int> {
