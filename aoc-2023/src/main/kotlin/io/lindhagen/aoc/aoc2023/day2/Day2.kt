@@ -2,6 +2,12 @@ package io.lindhagen.aoc.aoc2023.day2
 
 import io.lindhagen.aoc.utils.BaseDay
 
+private val configuration = mapOf(
+  "red" to 12,
+  "green" to 13,
+  "blue" to 14,
+)
+
 data class CubeGame(
   val name: String,
   val id: Int,
@@ -10,11 +16,8 @@ data class CubeGame(
 
 internal object Day2 : BaseDay<Int> {
   override fun task1(input: String): Int {
-    val games = buildGames(input)
-//      .also { println(it.joinToString("\n")) }
-
-    val possibleGames = games.filter(::isGamePossible)
-//    println(games.filter { !isGamePossible(it) }.joinToString("\n"))
+    val possibleGames = buildGames(input)
+      .filter(::isGamePossible)
 
     return possibleGames.sumOf { it.id }
   }
@@ -22,25 +25,19 @@ internal object Day2 : BaseDay<Int> {
   override fun task2(input: String): Int {
     val games = buildGames(input)
 
-    return 0
+    return games
+      .map { maxAmountByColor(it) }
+      .sumOf { it.values.powerOf() }
   }
-
-  private val configuration = mapOf(
-    "red" to 12,
-    "green" to 13,
-    "blue" to 14,
-  )
 
   private fun isGamePossible(game: CubeGame): Boolean {
     val colors = maxAmountByColor(game)
-//      .also { println("$game -> $it") }
 
     return colors
       .all { (color, amount) ->
         val maxValue = configuration.getValue(color)
         amount <= maxValue
       }
-//      .also { println("\t $it") }
   }
 
   private fun maxAmountByColor(game: CubeGame): Map<String, Int> {
@@ -49,7 +46,7 @@ internal object Day2 : BaseDay<Int> {
       .flatten()
       .groupBy { it.first }
       .mapValues { it.value.map { (_, amount) -> amount } }
-      // Find the largest amount presented to us, for each color
+      // Find the largest amount presented to us, per color
       .mapValues { it.value.max() }
   }
 
@@ -80,5 +77,9 @@ internal object Day2 : BaseDay<Int> {
           sets = sets,
         )
       }
+  }
+
+  private fun Collection<Int>.powerOf(): Int {
+    return fold(1) { agg, next -> agg * next }
   }
 }

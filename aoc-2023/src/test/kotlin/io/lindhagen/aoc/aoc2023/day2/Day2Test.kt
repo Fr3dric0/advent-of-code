@@ -15,11 +15,11 @@ internal class Day2Test : BaseTest<Int> {
       Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
       """.trimIndent(),
     task1 = 8,
-    task2 = 281,
+    task2 = 2286,
   )
   override val actual = Task(
     input = "day2",
     task1 = 2076,
-    task2 = 53340,
+    task2 = 70950,
   )
 }
