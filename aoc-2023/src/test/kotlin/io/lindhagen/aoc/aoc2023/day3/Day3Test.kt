@@ -24,7 +24,7 @@ internal class Day3Test : BaseTest<Int> {
   )
   override val actual = Task(
     input = "day3",
-    task1 = 2076,
-    task2 = 70950,
+    task1 = 539713,
+    task2 = 84159075,
   )
 }

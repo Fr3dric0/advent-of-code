@@ -27,4 +27,11 @@ object ListUtils {
       .toList()
       .map { it.toList() }
   }
+
+  /**
+   * Multiplies each item in the collection with each other
+   * */
+  fun Collection<Int>.multiply(): Int {
+    return fold(1) { agg, next -> agg * next }
+  }
 }
