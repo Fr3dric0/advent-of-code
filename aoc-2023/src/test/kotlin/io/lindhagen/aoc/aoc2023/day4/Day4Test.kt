@@ -16,11 +16,11 @@ internal class Day4Test : BaseTest<Int> {
       Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
       """.trimIndent(),
     task1 = 13,
-    task2 = 467835,
+    task2 = 30,
   )
   override val actual = Task(
     input = "day4",
-    task1 = 539713,
-    task2 = 84159075,
+    task1 = 21919,
+    task2 = 9881048,
   )
 }
