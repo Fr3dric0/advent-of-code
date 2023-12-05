@@ -4,8 +4,7 @@ import io.lindhagen.aoc.utils.BaseDay
 
 private class PlantingMap {
   val name: String
-  val coordinates: List<Pair<Long, Long>> = emptyList()
-  val oldCoordinates = mutableMapOf<Long, Long>()
+  val coordinates: List<Pair<Long, Long>>
 
   constructor(name: String, lines: List<String>) {
     this.name = name
@@ -19,36 +18,34 @@ private class PlantingMap {
         println("\t$destination, $source, $length")
 
         for (index in 0..<length) {
-          oldCoordinates[source + index] = destination + index
-//          map.add(destination + index to source + index)
+          map.add(source + index to destination + index)
         }
         println("$name: Coordinates inserted")
       }
 
     println("$name: Sorting coordinates for search")
-//    coordinates = map.sortedBy { it.first }
+    coordinates = map.sortedBy { it.first }
     println("$name: Sorting completed")
   }
 
   fun getOrDefault(source: Long): Long {
-    return oldCoordinates[source] ?: source
-//    val index = coordinates.binarySearch {
-//      val diff = it.first - source
-//
-//      if (diff == 0L) {
-//        0
-//      } else if (diff < 0) {
-//        -1
-//      } else {
-//        1
-//      }
-//    }
-//
-//    return if (index >= 0) {
-//      coordinates[index].second
-//    } else {
-//      source
-//    }
+    val index = coordinates.binarySearch {
+      val diff = it.first - source
+
+      if (diff == 0L) {
+        0
+      } else if (diff < 0) {
+        -1
+      } else {
+        1
+      }
+    }
+
+    return if (index >= 0) {
+      coordinates[index].second
+    } else {
+      source
+    }
   }
 
   override fun toString(): String {
