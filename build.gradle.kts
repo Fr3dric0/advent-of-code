@@ -15,5 +15,8 @@ allprojects {
 
   tasks.withType<Test> {
     useJUnitPlatform()
+    minHeapSize = "512m"
+    maxHeapSize = "2048m"
+    jvmArgs = listOf("-XX:MaxPermSize=1024m")
   }
 }

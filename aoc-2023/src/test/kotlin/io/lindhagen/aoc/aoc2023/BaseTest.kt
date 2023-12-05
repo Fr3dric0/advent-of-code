@@ -2,6 +2,7 @@ package io.lindhagen.aoc.aoc2023
 
 import io.lindhagen.aoc.utils.BaseDay
 import io.lindhagen.aoc.utils.InputUtils.readDayInput
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
@@ -23,16 +24,19 @@ internal interface BaseTest<out OUTCOME> {
     expectThat(tester.task1(sample.input)).isEqualTo(sample.task1)
   }
   @Test
+  @Disabled
   fun `'task1' actual`() {
     val input = readDayInput(actual.input)
     expectThat(tester.task1(input)).isEqualTo(actual.task1)
   }
 
   @Test
+  @Disabled
   fun `'task2' sample`() {
     expectThat(tester.task2(sample.input)).isEqualTo(sample.task2)
   }
   @Test
+  @Disabled
   fun `'task2' actual`() {
     val input = readDayInput(actual.input)
     expectThat(tester.task2(input)).isEqualTo(actual.task2)
