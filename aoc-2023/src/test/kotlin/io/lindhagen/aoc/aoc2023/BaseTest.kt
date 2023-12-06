@@ -20,12 +20,10 @@ internal interface BaseTest<out OUTCOME> {
   val tester: BaseDay<OUTCOME>
 
   @Test
-  @Disabled
   fun `'task1' sample`() {
     expectThat(tester.task1(sample.input)).isEqualTo(sample.task1)
   }
   @Test
-  @Disabled
   fun `'task1' actual`() {
     val input = readDayInput(actual.input)
     expectThat(tester.task1(input)).isEqualTo(actual.task1)
@@ -36,7 +34,6 @@ internal interface BaseTest<out OUTCOME> {
     expectThat(tester.task2(sample.input)).isEqualTo(sample.task2)
   }
   @Test
-  @Disabled
   fun `'task2' actual`() {
     val input = readDayInput(actual.input)
     expectThat(tester.task2(input)).isEqualTo(actual.task2)

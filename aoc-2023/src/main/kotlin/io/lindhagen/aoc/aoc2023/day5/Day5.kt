@@ -31,11 +31,9 @@ private class PlantingMap {
 
     val map = mutableListOf<PlantingRange>()
 
-    println("$name")
     lines
       .forEach { line ->
         val (destination, source, length) = line.split(" ").map { it.toLong() }
-        println("\t$destination, $source, $length")
 
         map.add(PlantingRange(
           min = source,
@@ -43,10 +41,8 @@ private class PlantingMap {
           size = length,
           destination = destination,
         ))
-        println("\tCoordinates inserted")
       }
 
-    println("$name: Sorting coordinates for search")
     coordinates = map
   }
 
@@ -81,7 +77,27 @@ internal object Day5 : BaseDay<Long> {
   }
 
   override fun task2(input: String): Long {
-    TODO("Not yet implemented")
+    val lines = input.trim().split("\n\n")
+
+    val seeds = getSeedsRanges(lines)
+    val maps = buildPlantingMaps(lines)
+
+    val smallestLocations = maps.last().coordinates.sortedBy { it.min }
+
+    val mapsReversed = maps.reversed()
+    println(mapsReversed)
+
+    val locationRange = smallestLocations[0]
+    println(locationRange)
+
+    seeds
+      .asSequence()
+      .forEach { (seedStart, seedSize) ->
+        val seedEnd = seedStart + seedSize - 1
+        println("$seedStart - $seedEnd ($seedSize)")
+      }
+
+    return 0
   }
 
   private fun buildInput(input: String): Pair<List<Long>, List<PlantingMap>> {
@@ -96,19 +112,31 @@ internal object Day5 : BaseDay<Long> {
           .map { it.toLong() }
       }
 
-    val maps = lines
+    val maps = buildPlantingMaps(lines)
+
+    return seeds to maps
+  }
+
+  private fun buildPlantingMaps(lines: List<String>): List<PlantingMap> {
+    return lines
       .filter { !it.startsWith("seeds:") }
       .map { line ->
         val (name, coordinates) = line.split(":\n")
-        println("Line: $name")
 
         PlantingMap(
           name = name.replace("map", "").trim(),
           lines = coordinates.trim().split("\n"),
         )
-//          .also { println(it) }
       }
+  }
 
-    return seeds to maps
+  private fun getSeedsRanges(lines: List<String>): List<Pair<Long, Long>> {
+    return lines[0]
+      .replace("seeds:", "")
+      .trim()
+      .split(" ")
+      .map { it.toLong() }
+      .chunked(2)
+      .map { it[0] to it[1] }
   }
 }
