@@ -24,7 +24,7 @@ internal class Day7Test : BaseTest<Long> {
       23456 43
       """.trimIndent(),
     task1 = 1343L,
-    task2 = 71503L,
+    task2 = 5905L,
   )
   override val actual = Task(
     input = "day7",
