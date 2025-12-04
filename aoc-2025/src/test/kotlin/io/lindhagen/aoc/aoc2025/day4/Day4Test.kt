@@ -21,11 +21,11 @@ internal class Day4Test : BaseTest<Long> {
       @.@.@@@.@.
       """.trimIndent().trimMargin(),
       task1 = 13L,
-      task2 = 4174379265L,
+      task2 = 43L,
     )
     override val actual = Task(
       input = "day4",
       task1 = 1547L,
-      task2 = 35950619148L,
+      task2 = 8948L,
     )
 }
