@@ -33,6 +33,20 @@ internal object Day5 : BaseDay<Long> {
   }
 
   override fun task2(input: String): Long {
-    return 0
+    val collections = input.trim().split("\n\n")
+
+    val freshIngredients = collections.first().trim()
+      .lines()
+      .map { it.split("-") }
+      .map { it.first().toLong() to it.last().toLong() }
+      .map { (it.first..it.second) }
+
+    val allIds = mutableSetOf<Long>()
+
+    freshIngredients.forEach {
+      allIds.addAll(it.toSet())
+    }
+
+    return allIds.size.toLong()
   }
 }
