@@ -26,6 +26,35 @@ internal object Day6 : BaseDay<Long> {
   }
 
   override fun task2(input: String): Long {
+    val math = input
+      .trim()
+      .split("\n")
+      .map { it.trim() }
+      .map { it.split("\\s+".toRegex()) }
+      .transpose()
+    println(math)
+
+    val allProblems = math.map { problems ->
+      val numbers = problems.take(problems.size - 1)
+      val longestNumber = numbers.maxOf { it.length }
+      val padded = numbers
+        .map { it.padEnd(longestNumber, '0') }
+
+      val actualNumbers = padded
+        .map { it.toCharArray().toList() }
+        .transpose()
+        .map { it.joinToString("") }
+        .reversed() // Right to left processing
+
+      println(actualNumbers)
+
+      actualNumbers.plus(problems.last())
+    }.reversed()
+
+    allProblems.map {
+      problemSolver(it)
+    }
+
     return 0
   }
 
