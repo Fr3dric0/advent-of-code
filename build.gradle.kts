@@ -1,5 +1,5 @@
 plugins {
-  kotlin("jvm") version "1.9.20"
+  kotlin("jvm") version "2.1.0"
   application
 }
 
@@ -17,6 +17,6 @@ allprojects {
     useJUnitPlatform()
     minHeapSize = "512m"
     maxHeapSize = "2048m"
-    jvmArgs = listOf("-XX:MaxPermSize=1024m")
+    jvmArgs = emptyList()
   }
 }
