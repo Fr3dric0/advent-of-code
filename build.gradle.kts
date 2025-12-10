@@ -1,14 +1,10 @@
 plugins {
-  kotlin("jvm") version "2.1.0"
+  kotlin("jvm") version "2.2.21" apply false
   application
 }
 
 group = "io.lindhagen.aoc"
 version = "1.0-SNAPSHOT"
-
-repositories {
-  mavenCentral()
-}
 
 allprojects {
   group = "io.lindhagen.aoc"
@@ -18,5 +14,17 @@ allprojects {
     minHeapSize = "512m"
     maxHeapSize = "2048m"
     jvmArgs = emptyList()
+  }
+}
+
+subprojects {
+  apply(plugin = "org.jetbrains.kotlin.jvm")
+
+  repositories {
+    mavenCentral()
+  }
+
+  configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
+    jvmToolchain(21)
   }
 }

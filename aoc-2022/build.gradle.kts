@@ -1,13 +1,8 @@
 plugins {
-  kotlin("jvm") version "2.1.0"
   application
 }
 
 version = "1.0-SNAPSHOT"
-
-repositories {
-  mavenCentral()
-}
 
 dependencies {
   implementation(project(":common"))
@@ -17,8 +12,4 @@ dependencies {
 
 application {
   mainClass.set("io.lindhagen.aoc.aoc2022.MainKt")
-}
-
-kotlin {
-  jvmToolchain(21)
 }
